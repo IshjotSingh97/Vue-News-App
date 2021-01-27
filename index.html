@@ -25,7 +25,8 @@
   </head>
   <body>
 
-    <div id="myapp" class="container-fluid">
+    <div id="myapp">
+      <div class="classcontainer-fluid" v-bind:class="{'text-white': darkmode, 'bg-dark' : darkmode }">
       <h1 class="mx-auto text-center">Vue News App</h1>
       <h1>{{darkmode}}</h1>
       <form>
@@ -37,6 +38,8 @@
   <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-model="darkmode"/>
   <label class="form-check-label" for="flexSwitchCheckDefault">Switch To Dark Mode</label>
 </div>
+</form>
+    </div>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
