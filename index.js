@@ -3,6 +3,7 @@ const appComponent = {
 	data(){
 		return {
 		usercategory : '',
+		darkmode : false,
 		categories : ["business","entertainment","general","health","science","sports","technology"]
 		}
 	},
