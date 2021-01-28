@@ -26,19 +26,30 @@
   <body>
 
     <div id="myapp">
-      <div class="classcontainer-fluid" v-bind:class="{'text-white': darkmode, 'bg-dark' : darkmode }">
+      <div class="container-fluid p-2" :class="{'text-white': darkmode, 'bg-dark' : darkmode }" style="height: 50rem;">
       <h1 class="mx-auto text-center">Vue News App</h1>
-      <h1>{{darkmode}}</h1>
-      <form>
-      <select class="form-select mx-auto mt-1">
-        <option v-for="category in categories" v-bind="usercategory">{{category}}</option>
-      </select>
-    <!-- Default switch -->
-<div class="form-check form-switch">
+      <div class="form-check form-switch">
   <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-model="darkmode"/>
   <label class="form-check-label" for="flexSwitchCheckDefault">Switch To Dark Mode</label>
 </div>
+      <form @submit.prevent="fetchNews"> 
+      <select class="form-select mx-auto mt-1" v-model="usercategory">
+        <option v-for="category in categories" >{{category}}</option>
+      </select>
+      <input type="submit" :class="{'btn btn-primary' : darkmode == false ,'btn btn-light' : darkmode == true }" value="Get News" class="mx-auto text-center" style="display: block;margin: 1rem auto;">
 </form>
+<div class="col-md-12">
+<div class="col-md-4" v-for="article in articles">
+    <div class="card mt-2" 9 >
+  <img src="article.urlToImage" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{article.title}}</h5>
+    <p class="card-text">{{article.content}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>
+</div>
     </div>
     </div>
 
@@ -46,6 +57,7 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 
   </body>
