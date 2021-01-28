@@ -1,64 +1,61 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Font Awesome -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-  rel="stylesheet"
-/>
-<!-- Google Fonts -->
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.css"
-  rel="stylesheet"
-/>
-
-    <title>Vue News App</title>
-  </head>
-  <body>
-
-    <div id="myapp">
-      <div class="container-fluid p-2" :class="{'text-white': darkmode, 'bg-dark' : darkmode }" style="height: 50rem;">
-      <h1 class="mx-auto text-center">Vue News App</h1>
-      <div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-model="darkmode"/>
-  <label class="form-check-label" for="flexSwitchCheckDefault">Switch To Dark Mode</label>
-</div>
-      <form @submit.prevent="fetchNews"> 
-      <select class="form-select mx-auto mt-1" v-model="usercategory">
-        <option v-for="category in categories" >{{category}}</option>
-      </select>
-      <input type="submit" :class="{'btn btn-primary' : darkmode == false ,'btn btn-light' : darkmode == true }" value="Get News" class="mx-auto text-center" style="display: block;margin: 1rem auto;">
-</form>
-<div class="col-md-12">
-<div class="col-md-4" v-for="article in articles">
-    <div class="card mt-2" 9 >
-  <img src="article.urlToImage" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{article.title}}</h5>
-    <p class="card-text">{{article.content}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-</div>
-</div>
-    </div>
-    </div>
-
-    <script src="https://unpkg.com/vue@next"></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-
-  </body>
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Font Awesome -->
+      <link
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+         rel="stylesheet"
+         />
+      <!-- Google Fonts -->
+      <link
+         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+         rel="stylesheet"
+         />
+      <link
+         href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.css"
+         rel="stylesheet"
+         />
+      <link rel="stylesheet" type="text/css" href="index.css">
+      <title>Vue News App</title>
+   </head>
+   <body>
+      <div id="myapp">
+         <div class="container-fluid" :class="{'text-white': darkmode, 'bg-dark' : darkmode }" style="height: 50rem;">
+            <h1 class="mx-auto text-center">Vue News App</h1>
+            <div class="form-check form-switch">
+               <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-model="darkmode"/>
+               <label class="form-check-label" for="flexSwitchCheckDefault">Switch To Dark Mode</label>
+            </div>
+            <form @submit.prevent="fetchNews">
+               <select class="form-select mx-auto mt-1" v-model="usercategory">
+                  <option v-for="category in categories" >{{category}}</option>
+               </select>
+               <input type="submit" :class="{'btn btn-primary' : darkmode == false ,'btn btn-light' : darkmode == true }" value="Get News" class="mx-auto text-center" style="display: block;margin: 1rem auto;">
+            </form>
+            <div class="col-md-12" v-if="dataloaded == true" :class="{'text-white': darkmode, 'bg-dark' : darkmode }" >
+               <div class="col-md-4 mt-3" v-for="article in articles" style="margin: 0 auto;">
+                  <div class="card w-100"  :class="{'borderdark' : darkmode , 'borderlight' : darkmode == false}">
+                     <img class="card-img-top" :src="article.urlToImage" alt="Card image cap">
+                     <div class="card-body" :class="{'text-white': darkmode, 'bg-dark' : darkmode }">
+                        <h5 class="card-title">{{article.title}}</h5>
+                        <p class="card-text">{{article.content}}</p>
+                        <a :href="article.url" class="btn btn-primary" :class="{'btn btn-primary' : darkmode == false ,'btn btn-light' : darkmode == true }">Read More</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      <script src="https://unpkg.com/vue@next"></script>
+      <script
+         type="text/javascript"
+         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script type="text/javascript" src="index.js"></script>
+   </body>
 </html>

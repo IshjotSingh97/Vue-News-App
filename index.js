@@ -2,10 +2,11 @@ let API = 'https://saurav.tech/NewsAPI/top-headlines/category/option/in.json'
 const appComponent = {
 	data(){
 		return {
-		usercategory : null,
+		usercategory : 'business',
 		darkmode : false,
 		categories : ["business","entertainment","general","health","science","sports","technology"],
-		articles : []
+		dataloaded : false,
+		articles : {}
 		}
 	},
 	methods : {
@@ -15,8 +16,10 @@ const appComponent = {
 			await axios
 			.get(query)
 			.then((response)=>{
-				console.log(response.data)
+				console.log(response.data.articles)
+				console.log(typeof(response.data.articles))
 				this.articles = response.data.articles
+				this.dataloaded = true
 			})
 			.catch((error)=>{
 				console.log(error)
