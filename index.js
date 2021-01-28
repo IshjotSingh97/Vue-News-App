@@ -12,13 +12,10 @@ const appComponent = {
 	methods : {
 		async fetchNews(){
 			let query = API.replace("option",this.usercategory)
-			console.log(query)
 			await axios
 			.get(query)
 			.then((response)=>{
-				console.log(response.data.articles)
-				console.log(typeof(response.data.articles))
-				this.articles = response.data.articles
+				this.articles = response.data.articles.slice(0,10)
 				this.dataloaded = true
 			})
 			.catch((error)=>{
